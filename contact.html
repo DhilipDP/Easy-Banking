@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Transacton Details</title>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+	
+<style type="text/css">
+    *{
+        font-family: Source Sans Pro,sans-serif;
+    }
+	html{
+		width: 100%;
+		height: 100%;
+		font-family: Source Sans Pro,sans-serif;
+	}
+    #link{
+        margin-top: 10%;
+        font-size: 1.7em;
+    }  
+
+</style>
+</head>
+<body style="text-align: center;">
+<table id="example" class="display" cellspacing="0" width="100%">
+	<h1> Transaction Details </h1>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Account Number</th>
+                <th>Cash To be Deposited/Withdrawn</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Name</th>
+                <th>Account Number</th>
+                <th>Cash To be Deposited/Withdrawn</th>
+            </tr>
+        </tfoot>
+    </table>
+    <script type="text/javascript">
+    	$(document).ready(function() {
+    		var temp;
+
+    		$.ajax({
+    'url': "https://the-lazy-coder.me/contact/getAll",
+    'method': "GET",
+    'contentType': 'application/json'
+}).done( function(data) {
+    $('#example').dataTable( {
+	"bSort" : false,
+        "aaData": data,
+        "columns": [
+            { "data": "name" },
+            { "data": "account" },
+		    { "data": "amount" }
+        ]
+    })
+})
+
+    
+} );
+    </script>
+
+</body>
+</html>
